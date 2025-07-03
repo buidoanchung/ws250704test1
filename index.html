@@ -1,463 +1,522 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Khởi Động Tư Duy-Tìm kiếm Siêu sao Giải quyết Vấn đề GHN</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ghn-blue: #0062FF;
-            --ghn-red: #EE0033;
-            --ghn-dark-blue: #004ecc;
-            --ghn-light-gray: #f4f6f8;
-            --text-dark: #212529;
-            --gold: #FFD700;
-            --silver: #C0C0C0;
-            --bronze: #CD7F32;
-            --dark-orange: #D97706; /* Màu cam đậm */
-        }
-        body {
-            font-family: 'Be Vietnam Pro', sans-serif;
-            background-color: var(--ghn-light-gray);
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
-        .workshop-frame {
-            border: 2px solid var(--ghn-blue);
-            border-radius: 20px;
-            padding: 40px 20px;
-            position: relative;
-            margin-top: 40px;
-            background-color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-        .workshop-title {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--ghn-blue);
-            color: white;
-            padding: 8px 24px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            white-space: nowrap;
-        }
-        .btn {
-            transition: all 0.2s ease-in-out;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .btn:active {
-            transform: translateY(0);
-            box-shadow: none;
-        }
-        .answer-btn {
-            background-color: white;
-            border: 2px solid #e0e0e0;
-        }
-        .answer-btn:hover {
-            border-color: var(--ghn-blue);
-            background-color: #e6f0ff;
-        }
-        .answer-btn.correct {
-            background-color: #28a745 !important;
-            border-color: #28a745 !important;
-            color: white;
-            animation: pulse 0.5s;
-        }
-        .answer-btn.incorrect {
-            background-color: #dc3545 !important;
-            border-color: #dc3545 !important;
-            color: white;
-            animation: shake 0.5s;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        .timer-ring {
-            transition: stroke-dashoffset 1s linear, stroke 0.5s ease;
-        }
-        .leaderboard-item.current-user {
-            background-color: #e6f0ff;
-            border-left: 4px solid var(--ghn-blue);
-            transform: scale(1.02);
-        }
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
-            opacity: 0.7;
-            border-radius: 50%;
-            animation: fall 3s linear forwards;
-            z-index: 9999;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(110vh);
-                opacity: 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khởi Động Tư Duy - Tìm kiếm Siêu sao Giải quyết Vấn đề GHN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ghn-blue: #0062FF;
+      --ghn-red: #EE0033;
+      --ghn-dark-blue: #004ecc;
+      --ghn-light-gray: #f4f6f8;
+      --text-dark: #212529;
+      --gold: #FFD700;
+      --silver: #C0C0C0;
+      --bronze: #CD7F32;
+      --dark-orange: #D97706;
+    }
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: var(--ghn-light-gray);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+    .workshop-frame {
+      border: 2px solid var(--ghn-blue);
+      border-radius: 20px;
+      padding: 40px 20px;
+      position: relative;
+      margin-top: 40px;
+      background-color: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    .workshop-title {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--ghn-blue);
+      color: white;
+      padding: 8px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      white-space: nowrap;
+    }
+    .btn {
+      transition: all 0.2s ease-in-out;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+    .answer-btn {
+      background-color: white;
+      border: 2px solid #e0e0e0;
+    }
+    .answer-btn:hover {
+      border-color: var(--ghn-blue);
+      background-color: #e6f0ff;
+    }
+    .answer-btn.correct {
+      background-color: #28a745 !important;
+      border-color: #28a745 !important;
+      color: white;
+      animation: pulse 0.5s;
+    }
+    .answer-btn.incorrect {
+      background-color: #dc3545 !important;
+      border-color: #dc3545 !important;
+      color: white;
+      animation: shake 0.5s;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    .timer-ring {
+      transition: stroke-dashoffset 1s linear, stroke 0.5s ease;
+    }
+    .leaderboard-item.current-user {
+      background-color: #e6f0ff;
+      border-left: 4px solid var(--ghn-blue);
+      transform: scale(1.02);
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0.7;
+      border-radius: 50%;
+      animation: fall 3s linear forwards;
+      z-index: 9999;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
+  <div class="workshop-frame w-full max-w-7xl">
+    <h2 class="workshop-title">Workshop: Nâng cao Năng lực Giải quyết Vấn Đề - GHN 2025!</h2>
+    <div id="app-container" class="w-full mx-auto">
 
-    <div class="workshop-frame w-full max-w-7xl">
-        <h2 class="workshop-title">Workshop: Nâng cao Năng lực Giải quyết Vấn Đề - GHN 2025!</h2>
-        <div id="app-container" class="w-full mx-auto">
-
-            <!-- Màn hình bắt đầu -->
-            <div id="start-screen" class="text-center p-8 max-w-2xl mx-auto">
-                <div class="flex justify-center mb-6">
-                    <svg class="w-28 h-28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="64" cy="64" r="64" fill="#0062FF"/><path d="M85.3337 42.6667L53.3337 74.6667L42.667 64" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-black mb-2" style="color: var(--ghn-blue);">KIỂM TRA ĐẦU GIỜ</h1>
-                <p class="text-xl md:text-2xl font-semibold mb-8" style="color: var(--dark-orange);">Nâng Cao Năng Lực Giải Quyết Vấn Đề</p>
-                <div class="mb-6">
-                    <input id="player-name" type="text" placeholder="Nhập tên của bạn..." class="w-full max-w-sm px-4 py-3 bg-gray-100 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                </div>
-                <button id="start-btn" class="btn btn-primary font-bold text-xl px-12 py-4 rounded-lg">BẮT ĐẦU</button>
-            </div>
-
-            <!-- Màn hình chính -->
-            <div id="main-screen" class="hidden">
-                <div class="flex flex-col lg:flex-row gap-8">
-                    <div id="quiz-container" class="w-full lg:w-2/3"><div class="p-8 bg-white rounded-2xl shadow-xl h-full flex flex-col"><div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200"><div><p id="player-info" class="text-lg font-bold" style="color: var(--ghn-blue);">Chiến Binh</p><p id="score-info" class="text-md text-gray-600">Điểm: 0</p></div><div class="relative w-20 h-20 flex items-center justify-center"><svg class="absolute w-full h-full" viewBox="0 0 100 100"><circle class="text-gray-200" stroke-width="8" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50" /><circle id="timer-ring" class="timer-ring" style="color: var(--ghn-blue);" stroke-width="8" stroke-linecap="round" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50" style="stroke-dasharray: 283; stroke-dashoffset: 0;" /></svg><span id="timer-text" class="text-2xl font-bold">30</span></div></div><div class="mb-8 flex-grow"><p id="question-number" class="text-sm text-gray-500 mb-2">Câu hỏi 1 / 5</p><h2 id="question-text" class="text-2xl md:text-3xl font-bold leading-tight">Đây là nội dung câu hỏi?</h2></div><div id="answers-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div></div></div>
-                    <div id="leaderboard-container" class="w-full lg:w-1/3"><div class="p-6 bg-white rounded-2xl shadow-xl h-full"><h3 class="text-2xl font-bold text-center mb-4" style="color: var(--ghn-blue);">BẢNG XẾP HẠNG</h3><div id="leaderboard-list" class="space-y-2"><p class="text-gray-500 text-center">Đang chờ kết quả...</p></div></div></div>
-                </div>
-            </div>
-
-            <!-- Màn hình kết quả -->
-            <div id="result-screen" class="hidden text-center p-8 max-w-2xl mx-auto">
-                <div id="result-card" class="bg-white rounded-2xl shadow-2xl p-8 relative mb-8">
-                    <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl"></div>
-                    <h2 class="text-3xl font-black mb-2" style="color: var(--ghn-blue);">HOÀN THÀNH!</h2>
-                    <p id="result-player-name" class="text-2xl font-bold text-gray-700 mb-4">Chúc mừng, Chiến Binh!</p>
-                    <div class="bg-gray-100 rounded-lg p-6">
-                        <div class="grid grid-cols-2 gap-4 text-center">
-                            <div>
-                                <p class="text-lg text-gray-500">Điểm số</p>
-                                <p id="final-score" class="text-5xl font-black my-1" style="color: var(--ghn-blue);">0</p>
-                            </div>
-                             <div>
-                                <p class="text-lg text-gray-500">Xếp hạng</p>
-                                <p id="final-rank" class="text-5xl font-black my-1" style="color: var(--ghn-blue);">N/A</p>
-                            </div>
-                        </div>
-                        <p id="result-summary" class="text-md text-gray-600 mt-4">Bạn đã trả lời đúng 0/5 câu hỏi.</p>
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button id="download-btn" class="btn btn-primary font-bold text-lg px-8 py-3 rounded-lg flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Tải Chứng Nhận (PNG)</button>
-                    <button id="play-again-btn" class="btn btn-secondary font-bold text-lg px-8 py-3 rounded-lg">LÀM LẠI</button>
-                </div>
-            </div>
+      <!-- START SCREEN -->
+      <div id="start-screen" class="text-center p-8 max-w-2xl mx-auto">
+        <div class="flex justify-center mb-6">
+          <!-- Bạn có thể thay SVG này thành logo bạn muốn -->
+          <svg class="w-28 h-28" viewBox="0 0 128 128" fill="none"><circle cx="64" cy="64" r="64" fill="#0062FF"/><path d="M85.3337 42.6667L53.3337 74.6667" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="64" cy="64" r="44" stroke="#fff" stroke-width="6"/></svg>
         </div>
+        <h1 class="text-4xl md:text-5xl font-black mb-2" style="color: var(--ghn-blue);">KIỂM TRA ĐẦU GIỜ</h1>
+        <p class="text-xl md:text-2xl font-semibold mb-8" style="color: var(--dark-orange);">Nâng Cao Năng Lực Giải Quyết Vấn Đề</p>
+        <div class="mb-6">
+          <input id="player-name" type="text" placeholder="Nhập tên của bạn..." class="w-full max-w-sm px-4 py-3 bg-gray-100 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" />
+        </div>
+        <button id="start-btn" class="btn btn-primary font-bold text-xl px-12 py-4 rounded-lg bg-blue-600 text-white">BẮT ĐẦU</button>
+      </div>
+
+      <!-- MAIN SCREEN -->
+      <div id="main-screen" class="hidden">
+        <div class="flex flex-col lg:flex-row gap-8">
+          <!-- Quiz section -->
+          <div id="quiz-container" class="w-full lg:w-2/3">
+            <div class="p-8 bg-white rounded-2xl shadow-xl h-full flex flex-col">
+              <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+                <span id="player-info" class="font-bold text-blue-800"></span>
+                <span id="score-info" class="font-bold text-xl"></span>
+              </div>
+              <div class="flex items-center gap-4 mb-6">
+                <svg width="48" height="48">
+                  <circle cx="24" cy="24" r="22" fill="#f0f4fa"/>
+                  <circle id="timer-ring" class="timer-ring" cx="24" cy="24" r="22" stroke="#0062FF" stroke-width="4" fill="none" stroke-dasharray="138" stroke-dashoffset="0"/>
+                </svg>
+                <span id="timer-text" class="text-2xl font-semibold text-blue-600">30</span>
+                <span class="ml-4" id="question-number"></span>
+              </div>
+              <div class="mb-6">
+                <div id="question-text" class="text-xl font-semibold mb-4"></div>
+                <div id="answers-container" class="flex flex-col gap-3"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Leaderboard section -->
+          <div id="leaderboard-container" class="w-full lg:w-1/3">
+            <div class="p-6 bg-white rounded-2xl shadow-xl h-full">
+              <h3 class="text-2xl font-bold text-center mb-4" style="color: var(--ghn-blue);">Bảng Xếp Hạng</h3>
+              <div id="leaderboard-list" class="flex flex-col gap-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULT SCREEN -->
+      <div id="result-screen" class="hidden text-center p-8 max-w-2xl mx-auto">
+        <div id="result-card" class="bg-white rounded-2xl shadow-2xl p-8 relative mb-8">
+          <div id="confetti-container" class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl"></div>
+          <h2 class="text-3xl font-black mb-2" style="color: var(--ghn-blue);">HOÀN THÀNH!</h2>
+          <p id="result-player-name" class="text-2xl font-bold text-gray-700 mb-4">Chúc mừng, Chiến Binh!</p>
+          <div class="bg-gray-100 rounded-lg p-6">
+            <div class="grid grid-cols-2 gap-4 text-center">
+              <div>
+                <p class="text-lg text-gray-500">Điểm số</p>
+                <p id="final-score" class="text-5xl font-black my-1" style="color: var(--ghn-blue);">0</p>
+              </div>
+              <div>
+                <p class="text-lg text-gray-500">Xếp hạng</p>
+                <p id="final-rank" class="text-5xl font-black my-1" style="color: var(--ghn-blue);">N/A</p>
+              </div>
+            </div>
+            <p id="result-summary" class="text-md text-gray-600 mt-4">Bạn đã trả lời đúng 0/5 câu hỏi.</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button id="download-btn" class="btn btn-primary font-bold text-lg px-8 py-3 rounded-lg bg-blue-600 text-white">TẢI CHỨNG NHẬN</button>
+          <button id="play-again-btn" class="btn btn-secondary font-bold text-lg px-8 py-3 rounded-lg bg-gray-300">LÀM LẠI</button>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+  <!-- SCRIPT -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const quizData = [
-            { question: 'Theo bạn, "Vấn đề" (Problem) khác với "Hiện tượng" (Symptom) ở điểm nào là cơ bản nhất?', answers: ['Vấn đề luôn gây thiệt hại về tiền bạc, còn hiện tượng thì không.', 'Vấn đề là sự sai khác giữa thực tế và kỳ vọng, trong khi hiện tượng chỉ là biểu hiện có thể quan sát được của vấn đề đó.', 'Giải quyết hiện tượng sẽ xử lý được gốc rễ, còn giải quyết vấn đề chỉ là tạm thời.', 'Vấn đề là do con người gây ra, còn hiện tượng là do hệ thống.'], correct: 1 },
-            { question: 'Tại sao việc áp dụng một quy trình hệ thống lại quan trọng hơn cách làm "chữa cháy" (xử lý sự vụ) khi giải quyết vấn đề?', answers: ['Vì "chữa cháy" tốn ít thời gian hơn nên thường không hiệu quả.', 'Vì quy trình hệ thống giúp tìm ra và xử lý nguyên nhân gốc rễ, ngăn vấn đề lặp lại.', 'Vì chỉ có cấp quản lý mới được dùng quy trình, nhân viên chỉ nên "chữa cháy".', 'Vì quy trình hệ thống giúp đổ lỗi chính xác cho người gây ra vấn đề.'], correct: 1 },
-            { question: 'Khi bạn muốn tìm và hệ thống hóa TOÀN BỘ CÁC NGUYÊN NHÂN CÓ THỂ gây ra một vấn đề, công cụ nào sau đây là phù hợp nhất để bắt đầu?', answers: ['Biểu đồ xương cá (Ishikawa)', 'Chu trình PDCA', 'Ma trận RACI', 'Phân tích Pareto (80/20)'], correct: 0 },
-            { question: 'Để xác định vấn đề nào là "trọng tâm" cần tập trung nguồn lực giải quyết trước, phương pháp nào hiệu quả nhất?', answers: ['Chọn vấn đề dễ nhất để giải quyết cho nhanh.', 'Giải quyết vấn đề được nhiều người phàn nàn nhất.', 'Sử dụng Ma trận Ưu tiên (Impact/Effort) để so sánh giữa Tác động và Nỗ lực.', 'Chờ cấp trên chỉ định vấn đề cần ưu tiên.'], correct: 2 },
-            { question: 'Sau khi xác định vấn đề trọng tâm là "Giao hàng trễ", kỹ thuật nào giúp bạn ĐÀO SÂU để tìm ra nguyên nhân cốt lõi thực sự?', answers: ['Brainstorming', 'Gantt Chart', '5 Whys', 'Checklist'], correct: 2 }
-        ];
+    const quizData = [
+      {
+        question: 'Theo bạn, "Vấn đề" (Problem) khác với "Hiện tượng" (Symptom) ở điểm nào là cơ bản nhất?',
+        answers: [
+          'Vấn đề luôn gây thiệt hại về tiền bạc.',
+          'Vấn đề là nguyên nhân, hiện tượng là kết quả biểu hiện ra ngoài.',
+          'Hiện tượng thường xuất hiện lặp lại, vấn đề thì không.',
+          'Hiện tượng dễ nhận biết, vấn đề thì không.'
+        ],
+        correct: 1
+      },
+      {
+        question: 'Tại sao việc áp dụng một quy trình hệ thống lại quan trọng hơn cách làm "chữa cháy" (xử lý sự vụ) khi giải quyết vấn đề?',
+        answers: [
+          'Vì xử lý sự vụ nhanh hơn.',
+          'Vì giúp xử lý gốc rễ và ngăn tái diễn.',
+          'Vì dễ báo cáo hơn.',
+          'Vì tiết kiệm chi phí hơn.'
+        ],
+        correct: 1
+      },
+      {
+        question: 'Khi bạn muốn tìm và hệ thống hóa TOÀN BỘ CÁC NGUYÊN NHÂN CÓ THỂ gây ra một vấn đề, công cụ nào sau đây là phù hợp nhất để bắt đầu?',
+        answers: [
+          '5 Whys (5 Tại sao).',
+          'Pareto Chart.',
+          'Ishikawa (xương cá).',
+          'Brainstorming (Động não).'
+        ],
+        correct: 2
+      },
+      {
+        question: 'Để xác định vấn đề nào là "trọng tâm" cần tập trung nguồn lực giải quyết trước, phương pháp nào hiệu quả nhất?',
+        answers: [
+          'Chọn vấn đề theo cảm tính.',
+          'Phân tích Pareto 80/20.',
+          'Giải quyết vấn đề dễ nhất trước.',
+          'Tìm vấn đề nhiều người than phiền nhất.'
+        ],
+        correct: 1
+      },
+      {
+        question: 'Sau khi xác định vấn đề trọng tâm là "Giao hàng trễ", kỹ thuật nào giúp bạn ĐÀO SÂU để tìm ra nguyên nhân cốt lõi thực sự?',
+        answers: [
+          '5 Whys (5 Tại sao).',
+          'Brainstorming.',
+          'Ishikawa Diagram.',
+          'Đánh giá thông tin khách hàng.'
+        ],
+        correct: 0
+      }
+    ];
 
-        const startScreen = document.getElementById('start-screen');
-        const mainScreen = document.getElementById('main-screen');
-        const resultScreen = document.getElementById('result-screen');
-        const playerNameInput = document.getElementById('player-name');
-        const startBtn = document.getElementById('start-btn');
-        const playAgainBtn = document.getElementById('play-again-btn');
-        const downloadBtn = document.getElementById('download-btn');
-        const playerInfo = document.getElementById('player-info');
-        const scoreInfo = document.getElementById('score-info');
-        const timerText = document.getElementById('timer-text');
-        const timerRing = document.getElementById('timer-ring');
-        const questionNumber = document.getElementById('question-number');
-        const questionText = document.getElementById('question-text');
-        const answersContainer = document.getElementById('answers-container');
-        const resultPlayerName = document.getElementById('result-player-name');
-        const finalScore = document.getElementById('final-score');
-        const finalRank = document.getElementById('final-rank');
-        const resultSummary = document.getElementById('result-summary');
-        const leaderboardList = document.getElementById('leaderboard-list');
-        const confettiContainer = document.getElementById('confetti-container');
+    // DOM Elements
+    const startScreen = document.getElementById('start-screen');
+    const mainScreen = document.getElementById('main-screen');
+    const resultScreen = document.getElementById('result-screen');
+    const playerNameInput = document.getElementById('player-name');
+    const startBtn = document.getElementById('start-btn');
+    const playAgainBtn = document.getElementById('play-again-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const playerInfo = document.getElementById('player-info');
+    const scoreInfo = document.getElementById('score-info');
+    const timerText = document.getElementById('timer-text');
+    const timerRing = document.getElementById('timer-ring');
+    const questionNumber = document.getElementById('question-number');
+    const questionText = document.getElementById('question-text');
+    const answersContainer = document.getElementById('answers-container');
+    const resultPlayerName = document.getElementById('result-player-name');
+    const finalScore = document.getElementById('final-score');
+    const finalRank = document.getElementById('final-rank');
+    const resultSummary = document.getElementById('result-summary');
+    const leaderboardList = document.getElementById('leaderboard-list');
+    const confettiContainer = document.getElementById('confetti-container');
 
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let correctAnswersCount = 0;
-        let playerName = '';
-        let timer;
-        let timeLeft = 30;
-        const FULL_DASH_ARRAY = 283;
-        
-        let db, auth, userId;
-        let unsubscribeLeaderboard;
-        let finalPlayerList = [];
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'pre-course-quiz';
-        const collectionPath = `/artifacts/${appId}/public/data/pre_course_players`;
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let correctAnswersCount = 0;
+    let playerName = '';
+    let timer;
+    let timeLeft = 30;
+    const FULL_DASH_ARRAY = 138;
 
-        async function initialize() {
-            try {
-                const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-                
-                onAuthStateChanged(auth, async (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        await setupPlayer();
-                        setupLeaderboardListener();
-                        showQuestion();
-                    }
-                });
-            } catch (error) {
-                console.error("Firebase initialization failed:", error);
-                alert("Không thể kết nối đến máy chủ. Vui lòng thử lại.");
-            }
+    let db, auth, userId;
+    let unsubscribeLeaderboard;
+    let finalPlayerList = [];
+    // Firebase config (bạn cần thay bằng config của mình)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    const appId = 'pre-course-quiz';
+    const collectionPath = `artifacts/${appId}/public/data/pre_course_players`;
+
+    async function initialize() {
+      try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+
+        // Đăng nhập ẩn danh
+        onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            userId = user.uid;
+            await setupPlayer();
+            setupLeaderboardListener();
+            showQuestion();
+          }
+        });
+      } catch (error) {
+        console.error("Firebase initialization failed:", error);
+        alert("Không thể kết nối đến máy chủ. Vui lòng thử lại.");
+      }
+    }
+
+    async function handleStart() {
+      playerName = playerNameInput.value.trim() || 'Chiến Binh';
+      startScreen.classList.add('hidden');
+      resultScreen.classList.add('hidden');
+      mainScreen.classList.remove('hidden');
+      try {
+        await signInAnonymously(auth);
+      } catch (error) {
+        console.error("Authentication failed:", error);
+        alert("Đăng nhập thất bại. Vui lòng tải lại trang.");
+      }
+    }
+
+    async function setupPlayer() {
+      currentQuestionIndex = 0;
+      score = 0;
+      correctAnswersCount = 0;
+      playerInfo.textContent = playerName;
+      scoreInfo.textContent = `Điểm: 0`;
+      await updatePlayerInFirestore();
+    }
+
+    async function updatePlayerInFirestore() {
+      if (!userId || !db) return;
+      try {
+        const playerDocRef = doc(db, collectionPath, userId);
+        await setDoc(playerDocRef, { name: playerName, score: score }, { merge: true });
+      } catch (error) {
+        console.error("Failed to update player data:", error);
+      }
+    }
+
+    function setupLeaderboardListener() {
+      const q = query(collection(db, collectionPath));
+      unsubscribeLeaderboard = onSnapshot(q, (querySnapshot) => {
+        const players = [];
+        querySnapshot.forEach((doc) => {
+          players.push({ id: doc.id, ...doc.data() });
+        });
+        players.sort((a, b) => b.score - a.score);
+        finalPlayerList = players;
+        updateLeaderboardUI(players);
+      });
+    }
+
+    function updateLeaderboardUI(players) {
+      leaderboardList.innerHTML = '';
+      if (players.length === 0) {
+        leaderboardList.innerHTML = '<p class="text-gray-500 text-center">Đang chờ kết quả...</p>';
+        return;
+      }
+      players.forEach((player, index) => {
+        const playerElement = document.createElement('div');
+        playerElement.classList.add('leaderboard-item', 'flex', 'justify-between', 'items-center', 'p-3', 'rounded-lg', 'transition-all', 'duration-300');
+        if (player.id === userId) playerElement.classList.add('current-user');
+        const rank = index + 1;
+        let rankDisplay;
+        if (rank === 1) rankDisplay = `<span style="color: var(--gold);">🥇</span>`;
+        else if (rank === 2) rankDisplay = `<span style="color: var(--silver);">🥈</span>`;
+        else if (rank === 3) rankDisplay = `<span style="color: var(--bronze);">🥉</span>`;
+        else rankDisplay = `<span class="font-normal text-gray-500">#${rank}</span>`;
+        playerElement.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="font-bold text-lg w-8 text-center">${rankDisplay}</span>
+            <span class="font-semibold">${player.name}</span>
+          </div>
+          <span class="font-bold text-lg" style="color: var(--ghn-blue);">${player.score}</span>
+        `;
+        leaderboardList.appendChild(playerElement);
+      });
+    }
+
+    function showQuestion() {
+      resetState();
+      const currentQuestion = quizData[currentQuestionIndex];
+      questionNumber.textContent = `Câu hỏi ${currentQuestionIndex + 1} / ${quizData.length}`;
+      questionText.textContent = currentQuestion.question;
+      currentQuestion.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+        button.innerHTML = `<span class="font-bold mr-2">${String.fromCharCode(65 + index)}.</span> ${answer}`;
+        button.classList.add('btn', 'answer-btn', 'w-full', 'text-left', 'p-4', 'rounded-lg', 'focus:outline-none');
+        button.addEventListener('click', () => selectAnswer(index));
+        answersContainer.appendChild(button);
+      });
+      timeLeft = 30;
+      startTimer();
+    }
+
+    function resetState() {
+      while (answersContainer.firstChild) answersContainer.removeChild(answersContainer.firstChild);
+      clearInterval(timer);
+      timerText.textContent = 30;
+      timerRing.setAttribute('stroke-dashoffset', 0);
+      timerRing.style.stroke = 'var(--ghn-blue)';
+    }
+
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLeft--;
+        timerText.textContent = timeLeft;
+        setCircleDashoffset();
+        if (timeLeft <= 10) timerRing.style.stroke = '#f59e0b';
+        if (timeLeft <= 5) timerRing.style.stroke = 'var(--ghn-red)';
+        if (timeLeft === 0) {
+          clearInterval(timer);
+          selectAnswer(-1);
         }
+      }, 1000);
+    }
 
-        async function handleStart() {
-            playerName = playerNameInput.value.trim() || 'Chiến Binh';
-            startScreen.classList.add('hidden');
-            resultScreen.classList.add('hidden');
-            mainScreen.classList.remove('hidden');
-            
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (error) {
-                console.error("Authentication failed:", error);
-                alert("Đăng nhập thất bại. Vui lòng tải lại trang.");
-            }
+    function setCircleDashoffset() {
+      const rawTimeFraction = timeLeft / 30;
+      const timeFraction = rawTimeFraction - (1 / 30) * (1 - rawTimeFraction);
+      const dashoffset = (1 - timeFraction) * FULL_DASH_ARRAY;
+      timerRing.setAttribute('stroke-dashoffset', dashoffset);
+    }
+
+    async function selectAnswer(selectedIndex) {
+      clearInterval(timer);
+      const currentQuestion = quizData[currentQuestionIndex];
+      const isCorrect = selectedIndex === currentQuestion.correct;
+      const answerButtons = answersContainer.querySelectorAll('.answer-btn');
+      if (isCorrect) {
+        score += 100 + timeLeft * 5;
+        correctAnswersCount++;
+        scoreInfo.textContent = `Điểm: ${score}`;
+        await updatePlayerInFirestore();
+      }
+      answerButtons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === currentQuestion.correct) button.classList.add('correct');
+        else if (index === selectedIndex && selectedIndex !== -1) button.classList.add('incorrect');
+      });
+      setTimeout(() => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+          showQuestion();
+        } else {
+          showResults();
         }
-        
-        async function setupPlayer() {
-            currentQuestionIndex = 0;
-            score = 0;
-            correctAnswersCount = 0;
-            playerInfo.textContent = playerName;
-            scoreInfo.textContent = `Điểm: 0`;
-            await updatePlayerInFirestore();
-        }
+      }, 1500);
+    }
 
-        async function updatePlayerInFirestore() {
-            if (!userId || !db) return;
-            try {
-                const playerDocRef = doc(db, collectionPath, userId);
-                await setDoc(playerDocRef, { name: playerName, score: score }, { merge: true });
-            } catch (error) {
-                console.error("Failed to update player data:", error);
-            }
-        }
+    function showResults() {
+      mainScreen.classList.add('hidden');
+      resultScreen.classList.remove('hidden');
+      resultPlayerName.textContent = `Chúc mừng, ${playerName}!`;
+      finalScore.textContent = score;
+      resultSummary.textContent = `Bạn đã trả lời đúng ${correctAnswersCount}/${quizData.length} câu hỏi.`;
+      const playerRank = finalPlayerList.findIndex(p => p.id === userId);
+      if (playerRank !== -1) finalRank.textContent = `${playerRank + 1}/${finalPlayerList.length}`;
+      else finalRank.textContent = `N/A`;
+      if (unsubscribeLeaderboard) unsubscribeLeaderboard();
+      launchConfetti();
+    }
 
-        function setupLeaderboardListener() {
-            const q = query(collection(db, collectionPath));
-            unsubscribeLeaderboard = onSnapshot(q, (querySnapshot) => {
-                const players = [];
-                querySnapshot.forEach((doc) => {
-                    players.push({ id: doc.id, ...doc.data() });
-                });
-                players.sort((a, b) => b.score - a.score);
-                finalPlayerList = players; 
-                updateLeaderboardUI(players);
-            });
-        }
+    function launchConfetti() {
+      const confettiCount = 200;
+      const colors = ['#0062FF', '#EE0033', '#FFD700', '#FFFFFF'];
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = Math.random() * -100 + 'vh';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confetti);
+      }
+      setTimeout(() => {
+        document.querySelectorAll('.confetti').forEach(el => el.remove());
+      }, 3500);
+    }
 
-        function updateLeaderboardUI(players) {
-            leaderboardList.innerHTML = '';
-            if (players.length === 0) {
-                leaderboardList.innerHTML = '<p class="text-gray-500 text-center">Đang chờ kết quả...</p>';
-                return;
-            }
-            players.forEach((player, index) => {
-                const playerElement = document.createElement('div');
-                playerElement.classList.add('leaderboard-item', 'flex', 'justify-between', 'items-center', 'p-3', 'rounded-lg', 'transition-all', 'duration-300');
-                if (player.id === userId) {
-                    playerElement.classList.add('current-user');
-                }
-                
-                const rank = index + 1;
-                let rankDisplay;
-                if (rank === 1) rankDisplay = `<span style="color: var(--gold);">🥇</span>`;
-                else if (rank === 2) rankDisplay = `<span style="color: var(--silver);">🥈</span>`;
-                else if (rank === 3) rankDisplay = `<span style="color: var(--bronze);">🥉</span>`;
-                else rankDisplay = `<span class="font-normal text-gray-500">#${rank}</span>`;
+    function downloadResult() {
+      const card = document.getElementById('result-card');
+      html2canvas(card, {
+        backgroundColor: null,
+        useCORS: true,
+        scale: 2
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `ChungNhan_KiemTraDauGio_${playerName.replace(/ /g, '_')}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
 
-                playerElement.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <span class="font-bold text-lg w-8 text-center">${rankDisplay}</span>
-                        <span class="font-semibold">${player.name}</span>
-                    </div>
-                    <span class="font-bold text-lg" style="color: var(--ghn-blue);">${player.score}</span>
-                `;
-                leaderboardList.appendChild(playerElement);
-            });
-        }
+    function resetGame() {
+      window.location.reload();
+    }
 
-        function showQuestion() {
-            resetState();
-            const currentQuestion = quizData[currentQuestionIndex];
-            questionNumber.textContent = `Câu hỏi ${currentQuestionIndex + 1} / ${quizData.length}`;
-            questionText.textContent = currentQuestion.question;
+    startBtn.addEventListener('click', handleStart);
+    playAgainBtn.addEventListener('click', resetGame);
+    downloadBtn.addEventListener('click', downloadResult);
 
-            currentQuestion.answers.forEach((answer, index) => {
-                const button = document.createElement('button');
-                button.innerHTML = `<span class="font-bold mr-2">${String.fromCharCode(65 + index)}.</span> ${answer}`;
-                button.classList.add('btn', 'answer-btn', 'w-full', 'text-left', 'p-4', 'rounded-lg', 'focus:outline-none');
-                button.addEventListener('click', () => selectAnswer(index));
-                answersContainer.appendChild(button);
-            });
-            
-            timeLeft = 30;
-            startTimer();
-        }
-
-        function resetState() {
-            while (answersContainer.firstChild) {
-                answersContainer.removeChild(answersContainer.firstChild);
-            }
-            clearInterval(timer);
-            timerText.textContent = 30;
-            timerRing.setAttribute('stroke-dashoffset', 0);
-            timerRing.style.color = 'var(--ghn-blue)';
-        }
-
-        function startTimer() {
-            timer = setInterval(() => {
-                timeLeft--;
-                timerText.textContent = timeLeft;
-                setCircleDashoffset();
-                if (timeLeft <= 10) timerRing.style.color = '#f59e0b';
-                if (timeLeft <= 5) timerRing.style.color = 'var(--ghn-red)';
-                if (timeLeft === 0) {
-                    clearInterval(timer);
-                    selectAnswer(-1);
-                }
-            }, 1000);
-        }
-
-        function setCircleDashoffset() {
-            const rawTimeFraction = timeLeft / 30;
-            const timeFraction = rawTimeFraction - (1 / 30) * (1 - rawTimeFraction);
-            const dashoffset = (1 - timeFraction) * FULL_DASH_ARRAY;
-            timerRing.setAttribute('stroke-dashoffset', dashoffset);
-        }
-
-        async function selectAnswer(selectedIndex) {
-            clearInterval(timer);
-            const currentQuestion = quizData[currentQuestionIndex];
-            const isCorrect = selectedIndex === currentQuestion.correct;
-            const answerButtons = answersContainer.querySelectorAll('.answer-btn');
-
-            if (isCorrect) {
-                score += 100 + timeLeft * 5;
-                correctAnswersCount++;
-                scoreInfo.textContent = `Điểm: ${score}`;
-                await updatePlayerInFirestore();
-            }
-            
-            answerButtons.forEach((button, index) => {
-                button.disabled = true;
-                if (index === currentQuestion.correct) button.classList.add('correct');
-                else if (index === selectedIndex) button.classList.add('incorrect');
-            });
-
-            setTimeout(() => {
-                currentQuestionIndex++;
-                if (currentQuestionIndex < quizData.length) {
-                    showQuestion();
-                } else {
-                    showResults();
-                }
-            }, 1500);
-        }
-
-        function showResults() {
-            mainScreen.classList.add('hidden');
-            resultScreen.classList.remove('hidden');
-            resultPlayerName.textContent = `Chúc mừng, ${playerName}!`;
-            finalScore.textContent = score;
-            resultSummary.textContent = `Bạn đã trả lời đúng ${correctAnswersCount}/${quizData.length} câu hỏi.`;
-            
-            const playerRank = finalPlayerList.findIndex(p => p.id === userId);
-            if(playerRank !== -1){
-                finalRank.textContent = `${playerRank + 1}/${finalPlayerList.length}`;
-            } else {
-                finalRank.textContent = `N/A`;
-            }
-
-            if (unsubscribeLeaderboard) unsubscribeLeaderboard();
-            launchConfetti();
-        }
-        
-        function launchConfetti() {
-            const confettiCount = 200;
-            const colors = ['#0062FF', '#EE0033', '#FFD700', '#FFFFFF'];
-            for (let i = 0; i < confettiCount; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = Math.random() * -100 + 'vh';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                document.body.appendChild(confetti);
-            }
-            setTimeout(() => {
-                document.querySelectorAll('.confetti').forEach(el => el.remove());
-            }, 3500);
-        }
-
-        function downloadResult() {
-            const card = document.getElementById('result-card');
-            html2canvas(card, {
-                backgroundColor: null, 
-                useCORS: true,
-                scale: 2 
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `ChungNhan_KiemTraDauGio_${playerName.replace(/ /g, '_')}.png`;
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            });
-        }
-
-        function resetGame() {
-            window.location.reload();
-        }
-
-        startBtn.addEventListener('click', handleStart);
-        playAgainBtn.addEventListener('click', resetGame);
-        downloadBtn.addEventListener('click', downloadResult);
-        
-        window.onload = initialize;
-    </script>
+    window.onload = initialize;
+  </script>
 </body>
 </html>
